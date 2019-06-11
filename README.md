@@ -45,7 +45,8 @@ The pedigree file (PED file) is a white-space (space or tab) delimited file with
 + Paternal ID: 0 if not available 
 + Maternal ID: 0 if not available 
 + Sex:  1=male, 2=female   
-+ Phenotype: 1) for qualitative traits: 1=unaffected, 2=affected; 2) for quantitative traits: standardized quantitative trait values
++ Phenotype: 1) for qualitative traits: 1=unaffected, 2=affected; 
+             2) for quantitative traits: standardized quantitative trait values
 
 An example pedigree file is given below:
 
