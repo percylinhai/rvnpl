@@ -7,6 +7,7 @@ from SEQLinkage import HOMEPAGE
 from SEQLinkage.Utils import env, getColumn
 from SEQLinkage.Core import main
 import RVNPL.npl
+import RVNPL.qtl
 import os
 
 #################
