@@ -48,7 +48,7 @@ The pedigree file (PED file) is a white-space (space or tab) delimited file with
 + Phenotype: 1) for qualitative traits: 1=unaffected, 2=affected; 
              2) for quantitative traits: standardized quantitative trait values
 
-An example pedigree file is given below:
+An example pedigree file with qualitative traits is given below:
 
 ```
 11000 11000.fa 0 0 1 1
@@ -62,6 +62,21 @@ An example pedigree file is given below:
 11002 11002.mo 0 0 2 1
 11002 11002.p1 11002.fa 11002.mo 2 2
 ```
+An example pedigree file with quantitative traits is given below:
+
+```
+11000 11000.fa 0 0 1 0.1
+11000 11000.mo 0 0 2 1.1
+11000 11000.p1 11000.fa 11000.mo 1 0.8
+11000 11000.s1 11000.fa 11000.mo 2 -0.2
+11001 11001.fa 0 0 1 0.4
+11001 11001.mo 0 0 2 -0.3
+11001 11001.p1 11001.fa 11001.mo 1 1.4
+11002 11002.fa 0 0 1 -1.1
+11002 11002.mo 0 0 2 0.7
+11002 11002.p1 11002.fa 11002.mo 2 0.5
+```
+
 #### Zipped and tabixed VCF file
 The VCF file should contain variants for individuals corresponding to the PED file.
 
@@ -171,10 +186,44 @@ Options for calculating p-values:
   --rvibd               calculate IBD for RV only
 ```
 
+### Options for npqtl analysis
+
+```
+optional arguments:
+  -h, --help            show this help message and exit
+
+Options for doing analysis on CHP markers(default) or SNV markers:
+  --snv                 Calculate on SNV markers
+
+Input/Output options:
+  --path PATH           Path for input pedigree information.
+  --output PATH         Path for output files
+  --n_jobs N            number of multiprocess
+
+Options for calculating p-values:
+  --exact               get the exact distribution of Z-score and calculate p
+                        value from it
+  --cut FLOAT, -c FLOAT
+                        threshold for adaptive permutations
+  --rep N               times of permutations
+  --force               keep permutation times unchanged
+  --perfect_max N       maximum for inheritance vector iterations
+  --info_only           include only informative families
+  --perfect             use perfect data approximation in calculating Z-score
+  --rvibd               calculate IBD for RV only
+```
+
 Example commands are shown below:
+For RV-NPL analysis:
 
 ```shell
 rvnpl npl --path ./rep1 --output ./rep1 --exact --info_only --perfect --sall --rvibd --n_jobs 8 -c 0.001 --rep 2000000
+
+```
+For RV-NPQTL analysis:
+
+```shell
+rvnpl qtl --path ./rep1 --output ./rep1 --exact --info_only --perfect --sall --rvibd --n_jobs 8 -c 0.001 --rep 2000000
 
 ```
 
